@@ -1,0 +1,57 @@
+@import "reader-import";
+body {
+	font-size: 13px;
+}
+div {
+	position: relative;
+	display: inline-block;
+	opacity: 0;
+}
+article {
+	padding-bottom: 70px !important;
+}
+.transition-top {
+	-webkit-transition: top 500ms ease;
+       -moz-transition: top 500ms ease;
+         -o-transition: top 500ms ease;
+            transition: top 500ms ease;
+}
+.transition-left {
+	-webkit-transition: left 500ms ease;
+       -moz-transition: left 500ms ease;
+         -o-transition: left 500ms ease;
+            transition: left 500ms ease;
+}
+.transition-opacity {
+	-webkit-transition: opacity 500ms linear;
+       -moz-transition: opacity 500ms linear;
+         -o-transition: opacity 500ms linear;
+            transition: opacity 500ms linear;
+}
+.opacity-clear {
+	opacity: 0;
+}
+.overflow-hidden {
+	overflow: hidden;
+}
+.box-shadow {
+	box-shadow: 0 0 3px 2px rgba(0,0,0,.1);
+}
+.offscreen-top {
+	top: -100% !important;
+}
+.offscreen-left {
+	left: -100% !important;
+}
+.pointer-events-none {
+	pointer-events: none;
+}
+.pointer-events-all {
+	pointer-events: all;
+}
+#article-cont {
+	height: 100%;
+}
+#tempo-cont {
+	bottom: 70px;
+}
