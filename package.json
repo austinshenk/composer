@@ -1,10 +1,10 @@
 {
   "name": "composer",
   "version": "0.0.1",
-  "description": "A sample Node.js app using Express 4",
-  "main": "index.js",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node server.js",
     "scss": "node-sass --output-style compressed -o assets/css build/"
   },
   "dependencies": {
