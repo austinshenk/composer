@@ -1,11 +1,10 @@
 var express = require('express');
-var compression = require('compression');
 var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
+app.use(express.compress());
 app.use(express.static(__dirname + '/assets'));
-app.use(compression());
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
