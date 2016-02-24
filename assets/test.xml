@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<story tempo="1">
+<div measure="1f-0.2">
+I
+</div>
+<div measure=".1s&gt;1">s<div measure="-1.5s&gt;1 .2S&lt;1">ee</div><div measure=".1s&gt;1">aw</div>
+</div>
+<div measure="0f-0.2">
+ a
+</div>
+<div measure="1f-.5 0F-.5 0f-.5 0F-.5 0f-.5">
+ light!
+</div>
+</story>
