@@ -9,6 +9,7 @@ function Story(data) {
 
   var buttons = {
     play : $("#btn-play"),
+    playIcon: $("#btn-play use"),
     tempo : $("#btn-tempo"),
     settings : $("#btn-settings"),
     settingClose : $("#btn-setting-close"),
@@ -65,7 +66,7 @@ function Story(data) {
     "S" : function(element, delay, easing, duration) {return [TweenLite.to(element, duration*StoryConstants.ANIMATION.SLIDE.DURATION_REDUCTION, {left: StoryConstants.ANIMATION.SLIDE.AMOUNT, delay: delay, ease: EaseTypes[easing], onComplete: function(){TweenLite.set(element, {display: StoryConstants.ANIMATION.DISPLAY.HIDE})}}),
                                   TweenLite.to(element, duration, {opacity: 0, delay: delay, ease: EaseTypes[easing]})];}
   }
-  var timeline = new TimelineMax({paused: true, onComplete: function() {buttons.play.text("RESTART")}});
+  var timeline = new TimelineMax({paused: true, onComplete: function() {buttons.playIcon.attr("xlink:href", "#restart")}});
   var init = function(data) {
     var root = $(data.firstChild);
       var tempoAttr = StoryConstants.TEMPO.REGEX.exec(root.attr(StoryConstants.TEMPO.ATTR));
@@ -94,15 +95,15 @@ function Story(data) {
   }
   var play = function() {
     timeline.play();
-    buttons.play.text("PAUSE");
+    buttons.playIcon.attr("xlink:href", "#pause");
   }
   var pause = function() {
     timeline.pause();
-    buttons.play.text("RESUME");
+    buttons.playIcon.attr("xlink:href", "#resume");
   }
   var restart = function() {
     timeline.restart();
-    buttons.play.text("PAUSE");
+    buttons.playIcon.attr("xlink:href", "#pause");
   }
   var mainAction = function() {
     var isPlaying = timeline.isActive();
@@ -279,7 +280,11 @@ $(document).ready(function(){
       </section>
       <section class="col col-8">
         <section class="center">
-          <button id="btn-play" class="btn btn-primary rounded"></button>
+          <button id="btn-play" class="btn btn-primary rounded">
+            <svg class="btn-icon">
+              <use xlink:href="#play"/>
+            </svg>
+          </button>
         </section>
       </section>
       <section class="col col-2">
