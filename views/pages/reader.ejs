@@ -271,7 +271,11 @@ $(document).ready(function(){
   <section class="fixed z2 bottom-0 right-0 left-0 bg-secondary p1 border-top">
     <nav class="clearfix">
       <section class="col col-2">
-        <button id="btn-tempo" class="btn btn-outline left rounded" title="Tempo">TEMPO</button>
+        <button id="btn-tempo" class="btn btn-outline left rounded" title="Tempo">
+          <svg class="btn-icon">
+            <use xlink:href="#tempo"/>
+          </svg>
+        </button>
         <section id="tempo-cont" class="fixed offscreen-left transition-left px2 border-box col-12 left-0">
           <section class="bg-secondary color-action p1 box-shadow border-box rounded col-12">
             <input id="input-tempo" class="m0 range-light col-12" type="range" />
@@ -288,7 +292,11 @@ $(document).ready(function(){
         </section>
       </section>
       <section class="col col-2">
-        <button id="btn-settings" class="btn btn-outline right rounded" title="Settings">SETTINGS</button>
+        <button id="btn-settings" class="btn btn-outline right rounded" title="Settings">
+          <svg class="btn-icon">
+            <use xlink:href="#settings"/>
+          </svg>
+        </button>
       </section>
     </nav>
   </section>
