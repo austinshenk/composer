@@ -120,24 +120,13 @@ function Story(data) {
     }
   }
   var closeSettingsModal = function() {
-    overlay.modal.addClass("offscreen-top");
-    overlay.shadow.addClass("opacity-clear");
-    window.setTimeout(function() {
-      overlay.self.addClass("hide");
-    }, 600);
+    $('#modal').removeClass('open');
   }
   var settingsAction = function() {
-    if (overlay.self.hasClass("hide")) {
-      retrieveSettings();
-      overlay.self.removeClass("hide");
-      overlay.shadow.removeClass("opacity-clear");
-      overlay.modal.removeClass("offscreen-top");
-    } else {
-      closeSettingsModal();
-    }
+    $('#modal').toggleClass('open');
   }
   var tempoAction = function() {
-    tempoSliderWrapper.toggleClass("offscreen-left");
+    buttons.tempo.parent().toggleClass('open');
   }
   var getNewSettings = function() {
     var newSettings = {};
@@ -246,7 +235,6 @@ function Story(data) {
 }
 var story;
 $(document).ready(function(){
-  console.log("DOM Loaded!");
   $.ajax({
     type: 'GET',
     url: 'test.xml',
@@ -262,65 +250,61 @@ $(document).ready(function(){
 });
 </script>
 </head>
-<body class="overflow-auto">
-  <section id="icon-import">
+<body>
+  <div class="hidden">
     <%- include("../partials/icons") -%>
-  </section>
-  <section id="article-cont" class="relative z1 box-sizing overflow-auto">
-    <article class="p1"></article>
-  </section>
-  <section class="fixed z2 bottom-0 right-0 left-0 bg-secondary p1 border-top">
-    <nav class="clearfix">
-      <section class="col col-2">
-        <button id="btn-tempo" class="btn btn-outline left rounded" title="Tempo">
-          <svg class="btn-icon">
+  </div>
+  <div id="article-wrapper">
+    <article></article>
+  </div>
+  <nav am-mod="nav" am-utility="clearfix">
+    <div am-mod="grid" am-size="2">
+      <div id="popup-tempo" am-mod='popup' am-type='dropdown' am-anchor='bottom left' am-float>
+        <button id="btn-tempo" am-popup='toggle' am-mod="button" am-align="left" title="Tempo">
+          <svg am-mod="icon">
             <use xlink:href="#tempo"/>
           </svg>
         </button>
-        <section id="tempo-cont" class="fixed offscreen-left transition-left px2 border-box col-12 left-0">
-          <section class="bg-secondary color-action p1 border border-box rounded col-12">
-            <input id="input-tempo" class="m0 input-range col-12" type="range" />
-          </section>
-        </section>
-      </section>
-      <section class="col col-8">
-        <section class="center">
-          <button id="btn-play" class="btn btn-primary rounded">
-            <svg class="btn-icon">
-              <use xlink:href="#play"/>
-            </svg>
-          </button>
-        </section>
-      </section>
-      <section class="col col-2">
-        <button id="btn-settings" class="btn btn-outline right rounded" title="Settings">
-          <svg class="btn-icon">
-            <use xlink:href="#settings"/>
-          </svg>
-        </button>
-      </section>
-    </nav>
-  </section>
-  <section id="overlay" class="hide">
-    <section id="shadow" class="fixed z3 bottom-0 right-0 left-0 top-0 opacity-clear transition-opacity"></section>
-    <section id="modal" class="clearfix absolute z4 offscreen-top transition-top p1 border-box top-0 col-12 pointer-events-none">
-      <section class="md-col-10 lg-col-8 col-12 relative mx-auto bg-primary rounded pointer-events-all">
-        <header class="bg-action p1">
-          <h1 class="h1 mt1 mb1 color-alternate">Settings</h1>
-        </header>
-        <section class="px1">
-          <h2 class="h2">Tempo</h2>
-          <label for="tempoMin" class="label">Minimum : </label><input id="tempoMin" name="tempoMin" required="true" format="\d?\d?\d?" class="input block col-12"/>
-          <label for="tempoMax" class="label">Maximum : </label><input id="tempoMax" name="tempoMax" required="true" format="\d?\d?\d?" class="input block col-12"/>
-        </section>
-        <section class="p1 clearfix">
-          <section class="right">
-            <button id="btn-setting-save" class="btn btn-primary rounded">Save</button>
-            <button id="btn-setting-cancel" class="btn btn-outline">Cancel</button>
-          </section>
-        </section>
-      </section>
-    </section>
-  </section>
+        <div am-popup='menu'>
+          <input id="input-tempo" type="range" />
+        </div>
+      </div>
+    </div>
+    <div am-mod="grid" am-size="8">
+      <button id="btn-play" am-mod="button" am-align="center" am-type="primary">
+        <svg am-mod="icon">
+          <use xlink:href="#play"/>
+        </svg>
+      </button>
+    </div>
+    <div am-mod="grid" am-size="2">
+      <button id="btn-settings" am-mod="button" am-align="right" title="Settings">
+        <svg am-mod="icon">
+          <use xlink:href="#settings"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  <div id="modal" am-mod="popup" am-type="modal">
+    <div am-popup="overlay"></div>
+    <div am-popup="menu">
+      <h2 am-mod="header" am-type="form" am-render="block">Settings</h2>
+      <div am-mod="form">
+        <h3 am-mod="header" am-type="section">Tempo</h3>
+        <div am-mod="input">
+          <input id="tempoMin" placeholder="test" name="tempoMin" required="true" format="\d?\d?\d?"/>
+          <label for="tempoMin">Minimum</label>
+        </div>
+        <div am-mod="input">
+          <input id="tempoMax" name="tempoMax" required="true" format="\d?\d?\d?"/>
+          <label for="tempoMax">Maximum</label>
+        </div>
+      </div>
+      <div am-popup="controls">
+          <button id="btn-setting-save" am-mod="button" am-render="flat" am-type="primary">Save</button>
+          <button id="btn-setting-cancel" am-mod="button" am-render="flat">Cancel</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
